@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//Importing all important files 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React , {Component} from 'react';
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import './App.css';
+import fire from './firebase_config';
+import Login from './login';
+import Register from './register';
+import Home from './home';
+import Destination from './destination';
+import Public from './public';
+
+class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      user:{},
+    }
+  }
+
+
+  componentDidMount(){
+    this.authListener();
+  }
+
+  authListener(){
+    fire.auth().onAuthStateChanged((user) => {
+      //console.log(user);
+      if(user)
+      {
+        this.setState({user});
+        //localStorage.setItem('user',user.uid);
+      }else
+      {
+        this.setState({user: null});
+        //localStorage.removeItem(user);
+      }
+    });
+  }
+
+  render(){
+    return(
+      <div className="App">
+         { this.state.user ? 
+         (<div>
+         <Home />
+         <BrowserRouter>
+          <Route  path="/v/:id" component ={Destination}></Route> 
+         </BrowserRouter>
+         </div>
+         )
+         :
+         (
+        <BrowserRouter>
+        <Switch>          
+          <Route exact path="/" component ={Public}></Route>         
+          <Route exact path="/register" component ={Register}></Route>
+          <Route exact path="/login" component ={Login}></Route>
+          <Route  path="/v/:id" component ={Destination}></Route> 
+          </Switch>
+
+        </BrowserRouter>
+         )}
+      </div>
+    );
+  }
 }
 
 export default App;

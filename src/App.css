@@ -1,38 +1,310 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One|Roboto&display=swap');
+body
+{
+	font-family: 'Roboto', sans-serif !important;
+
+}
+.theme-text
+{
+	color:#01509e;
+}
+.text-dark
+{
+	color:#000 !important;
+}
+.theme-bg
+{
+	background-color:#01509e;
+}
+.h-100
+{
+	min-height:100vh !important;
+}
+.website_desc h1
+{
+	font-size:150px;
+	font-family: 'Fredoka One', cursive !important;
+}
+.website_desc h3
+{
+	font-size:24px;
+	letter-spacing:5px;
+	font-family: 'Fredoka One', cursive !important;
+}
+.div-middle
+{
+	display:table-cell;
+  text-align:center;
+  vertical-align:middle;
+  width:100vh !important;
+  height:100vh;
+  margin:0px auto;
+}
+.login-form
+{
+	width:70%;
+}
+.website_head
+{
+	font-size:80px;
+	letter-spacing:10px;
+	font-family: 'Fredoka One', cursive !important;
+	
+}
+.login-form label
+{
+	font-weight:bold;
+	letter-spacing:2px;
+	font-size:20px;
+}
+.login-form input
+{
+	box-shadow:0px 0px 0px red!important;
+  border:0px solid #fff;
+  border-bottom: 2px solid #ddd;
+	letter-spacing:2px;
+  padding:20px;
+  margin: 10px 0px;
+}
+.dash_big_head
+{
+	font-size:60px !important;
+	letter-spacing:10px;
+	font-family: 'Fredoka One', cursive !important;
+}
+.dash_small_head
+{
+	font-family: 'Fredoka One', cursive !important;
+	font-size:20px;
+	letter-spacing:5px;
+	padding-left:5px;
+}
+.overlay-form
+{
+	margin-top:-100px;
+}
+.dash_welcome
+{
+	padding:100px !important;
+}
+.overlay-form
+{
+	padding:30px;
+	background:#fff;
+	border-top-left-radius:40px;
+	border-top-right-radius:40px;
+}
+.shortner-form label
+{
+	font-size:20px;
+	font-weight:bold;
+	text-transform:capitalize;
+	letter-spacing:3px;
+}
+.shortner-form input
+{
+	box-shadow:0px 0px 0px #fff!important;
+	border-color:#ddd!important;
+	letter-spacing:2px;
+	padding:20px;
+}
+.shortner-form input[type='submit']
+{
+	padding:10px 30px!important;
+	font-weight:bold;
+	letter-spacing:3px;
+}
+#preloader {
+  min-height: 100vh;
+  min-width:100vh;
+  font-family: Roboto, Arial;
+  color: #adafb6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(249, 251, 255, 1);
+   position:fixed;
+  z-index:99999;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  transition: 1s 0.4s;
+}
+#preloader .desc
+{
+  top: 50px;
+  position: absolute;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#preloader .desc h1
+{
+  font-size: 80px;
+}
+.boxes {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  margin-top: 32px;
+  -webkit-transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+  transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+  display: block;
+}
+.boxes .box {
+  width: 32px;
+  height: 32px;
+  top: 0px;
+  left: 0;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.boxes .box:nth-child(1) {
+  -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
+  -webkit-animation: box1 1s linear infinite;
+  animation: box1 1s linear infinite;
+}
+.boxes .box:nth-child(2) {
+  -webkit-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+  -webkit-animation: box2 1s linear infinite;
+  animation: box2 1s linear infinite;
+}
+.boxes .box:nth-child(3) {
+  -webkit-transform: translate(100%, 100%);
+  transform: translate(100%, 100%);
+  -webkit-animation: box3 1s linear infinite;
+  animation: box3 1s linear infinite;
+}
+.boxes .box:nth-child(4) {
+  -webkit-transform: translate(200%, 0);
+  transform: translate(200%, 0);
+  -webkit-animation: box4 1s linear infinite;
+  animation: box4 1s linear infinite;
+}
+
+.boxes .box > div {
+  background: #5c8df6;
+  --translateZ: 15.5px;
+  --rotateY: 0deg;
+  --rotateX: 0deg;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #5c8df6;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  -webkit-transform: rotateY(var(--rotateY)) rotateX(var(--rotateX))
+    translateZ(var(--translateZ));
+  transform: rotateY(var(--rotateY)) rotateX(var(--rotateX))
+    translateZ(var(--translateZ));
+}
+
+.boxes .box > div:nth-child(1) {
+  top: 0;
+  left: 0;
+  background: #5c8df6;
+}
+.boxes .box > div:nth-child(2) {
+  background: #145af2;
+  right: 0;
+  --rotateY: 90deg;
+}
+.boxes .box > div:nth-child(3) {
+  background: #447cf5;
+  --rotateX: -90deg;
+}
+.boxes .box > div:nth-child(4) {
+  background: #dbe3f4;
+  top: 0;
+  left: 0;
+  --translateZ: -90px;
+}
+
+@keyframes box1 {
+  0%,
+  50% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(200%, 0);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes box2 {
+  0% {
+    transform: translate(0, 100%);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes box3 {
+  0%,
+  50% {
+    transform: translate(100%, 100%);
+  }
+  100% {
+    transform: translate(0, 100%);
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes box4 {
+  0% {
+    transform: translate(200%, 0);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: translate(200%, 100%);
   }
+  100% {
+    transform: translate(100%, 100%);
+  }
+}
+.nav
+{
+  position: absolute;
+  top:0px;
+  right:0px;
+  z-index: 9999999;
+}
+.nav-menus
+{
+  list-style: none;
+}
+.nav-menus li
+{
+  float: left;
+  padding: 10px 20px;
+  background:#01509e;
+  margin-right: 10px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: #fff;
+  letter-spacing: 2px;
+  transition: all 0.5s ease;
+}
+.nav-menus li:hover
+{
+  background-color: #000;
+  padding:20px;
+}
+.img-holder
+{
+  transition: all 1.5s ease;
+}
+.img-holder:hover
+{
+  transform: rotate(45deg);
 }
