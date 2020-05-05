@@ -9,7 +9,6 @@ class Login extends Component {
     super(props);
     this.login = this.login.bind(this);
     this.handleChange=this.handleChange.bind(this);
-    this.register=this.register.bind(this);
     this.state={
         email:'',
         password:''
@@ -26,15 +25,7 @@ class Login extends Component {
         alert(error.message);
       });
   }
-  register(e){
-    e.preventDefault();
-    fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
-
-    }).catch((error)=>
-    {
-         alert(error.message);
-    });
-}
+  
   handleChange(e){
       this.setState({[e.target.name]: e.target.value});
   }
@@ -77,8 +68,9 @@ class Login extends Component {
 </div>                  
                         <div class="form-group text-center">
                             <button type="submit" onClick={this.login} class="btn theme-bg text-light w-25 p-2 mx-4" id="loginbtn">Login</button>
-                            <button type="submit" onClick={this.register} class="btn theme-bg text-light w-25 p-2 mx-2" id="loginbtn">Register</button>
                         </div>
+                        
+                        <p>Have an account <a href="/register"> register</a></p>
                     </form>
 
                     
