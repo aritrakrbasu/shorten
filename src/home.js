@@ -3,7 +3,7 @@ import {fire,db,domain} from './firebase_config';
 import './App.css';
 
 
-class Home extends Component {
+class  Home extends Component {
 
   constructor(props){
     super(props);
@@ -11,7 +11,6 @@ class Home extends Component {
     this.Addnewurls = this.Addnewurls.bind(this);
     this.handleChange=this.handleChange.bind(this);
     this.Deleteurl=this.Deleteurl.bind(this);
-    this.Refresh=this.Refresh.bind(this);
 
     this.state={
         longurl:'',
@@ -26,7 +25,7 @@ class Home extends Component {
      fire.auth().signOut();
  }
 
- componentDidMount()
+ componentDidMount ()
  {
     
     db.collection('urls')
@@ -47,6 +46,29 @@ class Home extends Component {
      this.setState({ urls:urls})
     })
     .catch(error => console.log(error))
+ }
+ componentDidUpdate(prevProps, prevState)
+ {
+    if (prevState !== this.state) {
+    db.collection('urls')
+    .get()
+    .then(snapshot =>{
+        const urls=[]
+     snapshot.forEach( doc =>{
+         const data =doc.data();
+         const id   =doc.id;
+         const newjson ={
+             "data": data,
+             "id":id
+
+         }
+         //console.log(newjson);
+         urls.push(newjson)
+     })
+     this.setState({ urls:urls})
+    })
+    .catch(error => console.log(error))
+}
  }
 
  Addnewurls(e)
@@ -82,17 +104,11 @@ class Home extends Component {
     
    
  }
- Refresh(e)
- {
-    e.preventDefault();  
-    window.location.reload();
- }
  Deleteurl(e)
  {
     var documentid=e.target.id;
     //console.log(documentid);
     db.collection('urls').doc(documentid).delete();
-    window.location.reload();
  }
  handleChange(e){
     this.setState({[e.target.name]: e.target.value});
@@ -100,56 +116,56 @@ class Home extends Component {
 
 render(){
     return(
-                <div class="dashboard-body">
-                <div class="container-fluid p-0">
-                    <div class="dash_welcome theme-bg p-4 text-light text-center">
-                        <h1 class="dash_big_head"> Welcome to Shorten</h1>
-                        <h3 class="dash_small_head"> Your custom url shortner </h3>
-                        <button class="btn btn-danger text-light w-25 p-2 mb-4 mt-2" id="logoutbtn" onClick={this.logout}>Logout</button>
+                <div className ="dashboard-body">
+                <div className ="container-fluid p-0">
+                    <div className ="dash_welcome theme-bg p-4 text-light text-center">
+                        <h1 className ="dash_big_head"> Welcome to Shorten</h1>
+                        <h3 className ="dash_small_head"> Your custom url shortner </h3>
+                        <button className ="btn btn-danger text-light w-25 p-2 mb-4 mt-2" id="logoutbtn" onClick={this.logout}>Logout</button>
                     </div>
                 </div> 
                 
-                <div class="container overlay-form">
-                    <form class="shortner-form" method="post">
-                        <div class="row mb-4">
-                        <div class="col">
+                <div className ="container overlay-form">
+                    <form className ="shortner-form" method="post">
+                        <div className ="row mb-4">
+                        <div className ="col">
                         
-                                    <label class="theme-text"> Paste your long url here </label>
+                                    <label className ="theme-text"> Paste your long url here </label>
                                     <input 
-                                    type="text" 
+                                    type="url" 
                                     name="longurl" 
-                                    class="form-control" 
+                                    className ="form-control" 
                                     id="longurl" 
                                     placeholder="https://" 
                                     value={this.state.longurl} 
-                                    onChange={this.handleChange} ></input>
+                                    onChange={this.handleChange} required ></input>
                         </div>
-                        <div class="col">
-                        <label class="theme-text"> New Short Url </label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                            <div class="input-group-text">{domain + "/?v="}</div>
+                        <div className ="col">
+                        <label className ="theme-text"> New Short Url </label>
+                        <div className ="input-group mb-2">
+                            <div className ="input-group-prepend">
+                            <div className ="input-group-text">{domain + "/?v="}</div>
                             </div>
                             <input type="text" 
                                     name="shorturl" 
-                                    class="form-control" 
+                                    className ="form-control" 
                                     id="shorturl" 
                                     placeholder="short" 
                                     value={this.state.password} 
-                                    onChange={this.handleChange} ></input>
+                                    onChange={this.handleChange} required></input>
                         </div>
                         </div>
                         </div>
                          
-                        { this.state.error=='403' ? 
+                        { this.state.error==='403' ? 
                         (
-                            <div class="bg-danger text-light text-center m-auto w-50 p-2">
+                            <div className ="bg-danger text-light text-center m-auto w-50 p-2">
                                 <h5>oops !seems like the short url already exists</h5>
                             </div>
                         )
-                        :this.state.error=='401' ?
+                        :this.state.error==='401' ?
                         (
-                            <div class="bg-danger text-light text-center m-auto w-50 p-2">
+                            <div className ="bg-danger text-light text-center m-auto w-50 p-2">
                                 <h5>ehe</h5>
                             </div>
                         )
@@ -157,25 +173,22 @@ render(){
                         (false)
                         
                         }
-                        <button type="submit" value="Get url now" class="btn theme-bg text-light" id="submiturl" onClick={this.Addnewurls}>Get url now</button>
+                        <button type="submit" value="Get url now" className ="btn theme-bg text-light" id="submiturl" onClick={this.Addnewurls}>Get url now</button>
                     </form>
                 </div>
                 { this.state.newurl ?
                 (
-                <div class="container theme-bg alert text-light alert-dismissible fade show text-center p-4" role="alert">
+                <div className ="container theme-bg alert text-light alert-dismissible fade show text-center p-4" role="alert">
                 <strong>Your custom short link is  : </strong>
                 <span id="custom-link">{this.state.newurl}</span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick={this.Refresh}>
-                    <span aria-hidden="true">&times;</span>
-                </button>
                 </div>
                
                  ) :
                 (false)
                 } 
-                <div class="container">
-                    <h1 class="dash_big_head my-4">Previous built links</h1>
-                    <table class="table table-bordered"width="100%" cellspacing="0">
+                <div className ="container">
+                    <h1 className ="dash_big_head my-4">Previous built links</h1>
+                    <table className ="table table-bordered" width="100%" >
                                 <thead>
                                     <tr>
                                     <th>Original Link</th>
@@ -192,22 +205,26 @@ render(){
                                     <th>Action</th>
                                     </tr>
                                 </tfoot>
+                               
                                 <tbody id="table_body">
                                 {
                                     this.state.urls &&
                                     this.state.urls.map( urls =>{
+                                        
                                         return(
-                                            <tr>
+                                            <tr key={urls.data.shorturl}>
                                                 <td><a href={urls.data.longurl} target="_blank" rel="noopener noreferrer">{urls.data.longurl}</a></td>
                                                 <td><a href= {domain +"/v/"+ urls.data.shorturl} target="_blank" rel="noopener noreferrer">{domain +"/v/"+ urls.data.shorturl}</a></td>
                                                 <td>{urls.data.status}</td>
-                                                <td><button class="btn btn-danger" id={urls.id} onClick={this.Deleteurl}>Delete</button></td>
+                                                <td><button className ="btn btn-danger" id={urls.id} onClick={this.Deleteurl}>Delete</button></td>
                                                 
                                             </tr>
                                         )
+                                       
                                     })
                                 }
                                 </tbody>
+                              
                     </table>
                 </div>
                 </div>

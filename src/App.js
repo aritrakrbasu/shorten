@@ -1,7 +1,7 @@
 //Importing all important files 
 
 import React , {Component} from 'react';
-import { BrowserRouter, Route, Link, Switch,Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch,Redirect } from "react-router-dom";
 import './App.css';
 import fire from './firebase_config';
 import Login from './login';
@@ -26,7 +26,7 @@ class App extends Component {
 
   authListener(){
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
+     // console.log(user)
       if(user)
       {
         this.setState({user});
@@ -61,6 +61,7 @@ class App extends Component {
           <Route exact path="/login" component ={Login}></Route>
           <Route  path="/v/:id" component ={Destination}></Route> 
           <Route exact path="/dashboard" render={() => (<Redirect to="/" />)} />
+          <Route path="/:anything" component={Public} />
           </Switch>
 
         </BrowserRouter>

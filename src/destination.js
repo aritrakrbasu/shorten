@@ -1,11 +1,19 @@
 import React , {Component} from 'react';
-import {fire,db,domain} from './firebase_config';
+import {db} from './firebase_config';
 import Public from './public';
 
 
 
 class Destination extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            error_destination:''
+        }
+      }
  componentDidMount(){
+
      var url=window.location.href;
      
      var view = url.split("/v/");
@@ -15,21 +23,41 @@ class Destination extends Component {
     .get()
     .then(snapshot =>{
      snapshot.forEach( doc =>{
-         const data =doc.data();
-         console.log(data)
-        
-         window.location.href = data.longurl;
-         return null; 
+            const data =doc.data();
+            console.log(data)
+            
+            window.location.href = data.longurl;
+            return null; 
+
+
+    
      })
     })
-     .catch(error => console.log(error))
-         console.log(view[1])
+    .then(notfind => {
+        
+       
+        this.setState({error_destination:'1'})
+        console.log(this.state.error_destination)
+    })
+    .catch(error => {
+        console.log(error)
+        
+    } )
 
  }
     render(){
         return(
             <div class="body">
                      <Public />
+                     {this.state.error_destination ?
+                     (
+                     <div class="error-desitnation">
+                       <span>Wrong url ! please contact admin </span> 
+                        
+                    </div>
+                     ) :
+                     true
+                    }
                 </div>
             );
         }

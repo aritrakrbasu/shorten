@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import {fire,db,domain} from './firebase_config';
+import {fire} from './firebase_config';
 
 
 class Register extends Component {
@@ -34,7 +34,7 @@ class Register extends Component {
                             <div class="nav">
                                 <ul class="nav-menus">
                                 <a href="/"><li>Home</li></a>
-                                <a href="/register"> <li>Register Now</li></a>
+                                <a href="/login"> <li>Login</li></a>
                                 </ul>
                                 
                             </div>
@@ -43,7 +43,7 @@ class Register extends Component {
 
                         <div class="website_desc div-middle">
                             <div class="img-holder w-25 m-auto">
-                            <img src="logo.png" class="img-fluid"/>
+                            <img src="logo.png" class="img-fluid" alt="logo"/>
                             </div>
                             <h1> Shorten </h1>
                             <h3 class="text-white">  Your custom url shortner </h3>
@@ -66,7 +66,7 @@ class Register extends Component {
                                 <div class="form-group text-center">
                                     <button type="submit" onClick={this.register} class="btn theme-bg text-light w-25 p-2 mx-2" id="loginbtn">Register</button>
                                 </div>
-                                <p>Have an account <a href="/login"> login in </a></p>
+                                <p>Have an account <a href="/login">Login Now </a></p>
                             </form>
 
                             

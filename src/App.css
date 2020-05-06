@@ -22,7 +22,7 @@ body
 }
 .website_desc h1
 {
-	font-size:150px;
+	font-size:8em;
 	font-family: 'Fredoka One', cursive !important;
 }
 .website_desc h3
@@ -306,5 +306,21 @@ body
 }
 .img-holder:hover
 {
-  transform: rotate(45deg);
+  transform: rotate(45deg); 
+}
+.error-desitnation
+{
+  position:absolute;
+  top:200px;
+  font-size: 20px;
+  z-index:99999;
+  width:100%;
+  text-align: center;
+}
+.error-desitnation > span
+{
+  background-color: red;
+  color:#fff;
+  display: inline-block;
+  padding:0.5em
 }

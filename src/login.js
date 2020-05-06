@@ -46,7 +46,7 @@ class Login extends Component {
     
                 <div class="website_desc div-middle">
                     <div class="img-holder w-25 m-auto">
-                    <img src="logo.png" class="img-fluid"/>
+                    <img src="logo.png" class="img-fluid" alt="logo"/>
                     </div>
                     <h1> Shorten </h1>
                     <h3 class="text-white">  Your custom url shortner </h3>
@@ -70,7 +70,7 @@ class Login extends Component {
                             <button type="submit" onClick={this.login} class="btn theme-bg text-light w-25 p-2 mx-4" id="loginbtn">Login</button>
                         </div>
                         
-                        <p>Have an account <a href="/register"> register</a></p>
+                        <p>Don't have an account <a href="/register"> register</a></p>
                     </form>
 
                     
