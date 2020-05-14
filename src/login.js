@@ -18,12 +18,39 @@ class Login extends Component {
   login(e){
       
       e.preventDefault();
-      fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
+       
+      fire.auth().setPersistence(fire.auth.Auth.Persistence.SESSION)
+      .then(()=> {
+       
+        // Existing and future Auth states are now persisted in the current
+        // session only. Closing the window would clear any existing state even
+        // if a user forgets to sign out.
+        // ...
+        // New sign-in will be persisted with session persistence.
+         fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
+            console.log("yo")
+        }).catch((error)=>
+        {
+          alert(error.message);
+        });
 
-      }).catch((error)=>
-      {
-        alert(error.message);
+        return;
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
       });
+
+
+
+
+    //   fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
+
+    //   }).catch((error)=>
+    //   {
+    //     alert(error.message);
+    //   });
   }
   
   handleChange(e){
@@ -42,7 +69,7 @@ class Login extends Component {
                         
                     </div>
         <div class="row">
-            <div class="col-lg-6 theme-bg h-100 text-center text-light">
+            <div class="col-lg-6 theme-bg h-100 text-center text-light d-none d-lg-block">
     
                 <div class="website_desc div-middle">
                     <div class="img-holder w-25 m-auto">

@@ -18,45 +18,52 @@ class Destination extends Component {
      
      var view = url.split("/v/");
      
-     const ref = db.collection('urls').where("shorturl","==",view[1]);
-     ref
-    .get()
-    .then(snapshot =>{
-     snapshot.forEach( doc =>{
-            const data =doc.data();
+     const ref = db.collection('urls').doc(view[1]);
+     ref.get()
+    .then((docSnapshot) => {
+    if (docSnapshot.exists) {
+      ref.onSnapshot((doc) => {
+        const data =doc.data();
             console.log(data)
-            
+            if(data.status)
+            {
             window.location.href = data.longurl;
-            return null; 
-
-
-    
-     })
-    })
-    .then(notfind => {
-        
-       
+            }
+            else
+            {
+                this.setState({error_destination:'2'})
+            }
+      });
+    } else {
         this.setState({error_destination:'1'})
-        console.log(this.state.error_destination)
-    })
-    .catch(error => {
-        console.log(error)
-        
-    } )
+    }
+}) .catch(error => {
+    console.log(error)
+    
+} )
+
+
+
 
  }
     render(){
         return(
             <div class="body">
                      <Public />
-                     {this.state.error_destination ?
+                     {this.state.error_destination ==='1'?
                      (
                      <div class="error-desitnation">
                        <span>Wrong url ! please contact admin </span> 
                         
                     </div>
                      ) :
-                     true
+                     this.state.error_destination ==='2'?
+                     (
+                     <div class="error-desitnation">
+                       <span>This url is not active :)</span> 
+                        
+                    </div>
+                     ) : true
                     }
                 </div>
             );

@@ -29,12 +29,17 @@ class App extends Component {
      // console.log(user)
       if(user)
       {
+        localStorage.setItem('user',user.uid);
         this.setState({user});
-        //localStorage.setItem('user',user.uid);
+        this.setState({islogged:true});
+        console.log(this.state.user.uid)
+        
       }else
       {
+        
+        localStorage.removeItem('user');
         this.setState({user: null});
-        //localStorage.removeItem(user);
+        this.setState({islogged:false});
       }
     });
   }
@@ -42,8 +47,9 @@ class App extends Component {
   render(){
     return(
       <div className="App">
-         { this.state.user ? 
-         (<div>
+         { this.state.user? 
+		( 
+		 <div>
            <BrowserRouter>
            <Switch>    
           <Route  path="/v/:id" component ={Destination}></Route> 
@@ -53,19 +59,18 @@ class App extends Component {
          </div>
          )
          :
-         (
+         ( 
         <BrowserRouter>
         <Switch>      
           <Route exact path="/" component ={Public}></Route>         
           <Route exact path="/register" component ={Register}></Route>
           <Route exact path="/login" component ={Login}></Route>
           <Route  path="/v/:id" component ={Destination}></Route> 
-          <Route exact path="/dashboard" render={() => (<Redirect to="/" />)} />
           <Route path="/:anything" component={Public} />
           </Switch>
 
         </BrowserRouter>
-         )}
+         )} 
       </div>
     );
   }

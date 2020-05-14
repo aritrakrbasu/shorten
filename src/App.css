@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One|Roboto&display=swap');
 body
 {
-	font-family: 'Roboto', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
+  background-color: #F4F6FA;
 
 }
 .theme-text
@@ -22,7 +23,7 @@ body
 }
 .website_desc h1
 {
-	font-size:8em;
+	font-size:8vw;
 	font-family: 'Fredoka One', cursive !important;
 }
 .website_desc h3
@@ -68,31 +69,29 @@ body
 }
 .dash_big_head
 {
-	font-size:60px !important;
-	letter-spacing:10px;
+	font-size:5vw !important;
+	font-size:10vmin  !important;
 	font-family: 'Fredoka One', cursive !important;
 }
 .dash_small_head
 {
 	font-family: 'Fredoka One', cursive !important;
-	font-size:20px;
-	letter-spacing:5px;
+	font-size:2vw;
+	letter-spacing:0.5vw;
 	padding-left:5px;
 }
-.overlay-form
-{
-	margin-top:-100px;
-}
+
 .dash_welcome
 {
-	padding:100px !important;
+	padding:6vh !important;
 }
 .overlay-form
 {
-	padding:30px;
+  margin-top:-40px;
+  padding:50px 30px;
+  padding-top: 10px;
 	background:#fff;
-	border-top-left-radius:40px;
-	border-top-right-radius:40px;
+  border-radius:40px;
 }
 .shortner-form label
 {
@@ -116,7 +115,7 @@ body
 }
 #preloader {
   min-height: 100vh;
-  min-width:100vh;
+  min-width:100vw;
   font-family: Roboto, Arial;
   color: #adafb6;
   display: flex;
@@ -133,13 +132,18 @@ body
 }
 #preloader .desc
 {
-  top: 50px;
+  top: 12vh;
   position: absolute;
   text-align: center;
 }
 #preloader .desc h1
 {
-  font-size: 80px;
+  font-size: 10vw;
+}
+
+#preloader .desc h3
+{
+  font-size: 4.5vw;
 }
 .boxes {
   height: 32px;
@@ -311,7 +315,7 @@ body
 .error-desitnation
 {
   position:absolute;
-  top:200px;
+  bottom:100px;
   font-size: 20px;
   z-index:99999;
   width:100%;
@@ -323,4 +327,182 @@ body
   color:#fff;
   display: inline-block;
   padding:0.5em
+}
+.container 
+{
+  width:90vw !important;
+}
+.theme-btn
+{
+  border-radius: 100px;
+  width:100%;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.link_container
+{
+  padding: 40px 30px;
+  border-bottom: 1px solid #000;
+}
+
+.link_container li
+{
+  -ms-word-break: break-all;
+  word-break: break-all;
+}
+.link_container ul
+{
+  list-style: none;
+  margin: 0px;
+  padding:0px;
+}
+.link_info_container
+{
+  padding: 40px 30px;
+  border-bottom: 1px solid #000;
+}
+.info_text
+{
+  font-weight: bold;
+  float: left;
+  color:#333;
+  font-size: 1.1rem;
+  opacity: 0.4;
+}
+.right_info
+{
+  float: right !important;
+}
+.short_url > a
+{
+  color: #01509e;
+  font-weight:bold;
+  font-size:14px
+}
+.long_url > a
+{
+  color: #000 !important;
+  font-size: 14px;
+}
+.small-btn
+{
+  border:2px solid #000;
+  color: #000;
+  font-weight:bold;
+  font-size:12px;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+}
+.dash_welcome  > .dash_big_head
+{
+  font-size: 3.5em !important;
+  letter-spacing: 10px !important;
+}
+
+.dash_welcome  > .dash_small_head
+{
+  font-size: 0.8em !important;
+  letter-spacing: 3px !important;
+}
+.block {
+  height: 10px;
+  display: block;
+  margin: 15px 0px;
+}
+.block.block--short {
+  max-width: 50%;
+}
+
+.load-animate {
+  -webkit-animation: load 1s linear infinite;
+          animation: load 1s linear infinite;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  background: #dddddd;
+  background-image: -webkit-gradient(linear, left top, right top, from(#dddddd), color-stop(20%, #f5f5f5), color-stop(40%, #efefef), to(#dddddd));
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.load-animate.profile-pic {
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes load {
+  0% {
+    background-position: -680px 0;
+  }
+  100% {
+    background-position: 680px 0;
+  }
+}
+
+@keyframes load {
+  0% {
+    background-position: -680px 0;
+  }
+  100% {
+    background-position: 680px 0;
+  }
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+}
+.switch input[type="checkbox"] {
+  display: none;
+}
+.switch input:checked + .knob {
+  animation: colorChange 0.4s linear forwards;
+}
+.switch input:checked + .knob:before {
+  animation: turnON 0.4s linear forwards;
+}
+
+@keyframes colorChange {
+  from {
+    background-color: #ccc;
+  }
+  50% {
+    background-color: #318be0;
+  }
+  to {
+    background-color: #01509e;
+  }
+}
+@keyframes turnON {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(30.2px);
+    box-shadow: -10px 0px 44px 0px #434343;
+  }
+}
+.knob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+}
+
+.knob:before {
+  position: absolute;
+  background-color: white;
+  content: "";
+  left: 2px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.theme-text-light
+{
+  color:rgb(104, 104, 104) !important;
 }
