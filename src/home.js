@@ -16,6 +16,7 @@ class  Home extends Component {
     this.refresh=this.refresh.bind(this);
     this.toggle=this.toggle.bind(this);
     this.togg=this.togg.bind(this);
+    this.dark=this.dark.bind(this);
 
     this.state={
         longurl:'',
@@ -26,7 +27,8 @@ class  Home extends Component {
         newurl:'',
         refresh:false,
         editModalStatus : false,
-        editdoc:''
+        editdoc:'',
+        darkmode:false
     }
     this.editmodal = React.createRef();
 
@@ -37,7 +39,12 @@ class  Home extends Component {
 
  componentDidMount ()
  {
-    console.log(localStorage.getItem("user"))
+     var curTime= new  Date().getHours()
+     if(curTime > 1 && curTime <= 6)
+     {
+        this.setState({darkmode:true})
+     }
+    
     db.collection('urls')
     .where("author","==",localStorage.getItem("user")).get()
     .then(snapshot =>{
@@ -154,6 +161,11 @@ class  Home extends Component {
      });
      this.setState({refresh:true});
 } 
+dark(e)
+{
+   this.setState({[e.target.name]: e.target.checked});
+
+}
 copyToClipboard (copy){
     var textField = document.createElement('textarea')
     textField.innerText = copy
@@ -170,13 +182,24 @@ render()
 {
     let closeModal = () => this.setState({editModalStatus:false});
     return(
-                <div className ="dashboard-body">
+                <div className ={this.state.darkmode?"dark-mode":"dashboard-body"}>
                 <div className ="container-fluid p-0">
+
+                <label class="switch-dark" for="checkbox" title="Change color scheme to dark mode">
+                    <input type="checkbox" id="checkbox" name="darkmode" checked ={this.state.darkmode}  onChange={this.dark} />
+                    <div class="slider round"></div>
+                    <div class="toggle-moon">🌙</div>
+                    <div class="toggle-sun">☀️</div>
+                </label>
+
                     <div className ="dash_welcome theme-bg p-4 text-light text-center d-none d-sm-block">
                         <h1 className ="dash_big_head"> Welcome to Shorten</h1>
                         <h3 className ="dash_small_head"> Your custom url shortner </h3>
                         <button className ="btn btn-danger text-light w-25 p-2 mb-4 mt-2" id="logoutbtn" onClick={this.logout}>Logout</button>
-                    </div>
+                        
+                    </div>      
+       
+     
                     <div className ="dash_welcome theme-bg p-0 text-light text-center  d-xs-block d-md-none ">
                         <h1 className ="dash_big_head">Shorten</h1>
                         <h3 className ="dash_small_head"> Your custom url shortner </h3>
@@ -206,7 +229,7 @@ render()
                         <label className ="theme-text"> New Short Url </label>
                         <div className ="input-group mb-2">
                             <div className ="input-group-prepend d-none d-lg-block d-md-block">
-                            <div className ="input-group-text ">{domain + "/?v="}</div>
+                            <div className ="input-group-text ">{domain + "/v/"}</div>
                             </div>
                             <input type="text" 
                                     name="shorturl" 
@@ -269,7 +292,7 @@ render()
                        
                 </div>
 
-                               
+                
                                 { this.state.urlarrlength ?
                                 (
                                 
