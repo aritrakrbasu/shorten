@@ -340,6 +340,13 @@ body
   font-size: 18px;
   letter-spacing: 2px;
 }
+.theme-btn-medium
+{
+  border-radius: 100px;
+  padding: 5px 30px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
 .link_container
 {
   padding: 40px 30px;
@@ -512,6 +519,12 @@ body
   color: #ddd !important;
   transition: all .5s;
 }
+.dark-mode .modal-content
+{
+  background-color: #191719 !important;
+  color: #ddd !important;
+  transition: all .5s;
+}
 .dark-mode .info_text 
 {
   color: #ddd;
@@ -609,6 +622,10 @@ input:checked + .slider:before {
 .input-group-text
 {
   height:100% !important;
+}
+.modal-content
+{
+  border-radius: 20px;
 }
 
 

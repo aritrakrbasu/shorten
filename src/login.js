@@ -40,17 +40,9 @@ class Login extends Component {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
+
+        console.log(errorCode , errorMessage)
       });
-
-
-
-
-    //   fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
-
-    //   }).catch((error)=>
-    //   {
-    //     alert(error.message);
-    //   });
   }
   
   handleChange(e){

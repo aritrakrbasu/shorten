@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import {db} from './firebase_config';
 import Public from './public';
+import firebase from 'firebase';
 
 
 
@@ -17,27 +18,28 @@ class Destination extends Component {
      var url=window.location.href;
      
      var view = url.split("/v/");
-     
      const ref = db.collection('urls').doc(view[1]);
-     ref.get()
-    .then((docSnapshot) => {
-    if (docSnapshot.exists) {
-      ref.onSnapshot((doc) => {
+    
+   
+      ref.get().then((doc) => {
+          if(doc)
+          {
         const data =doc.data();
             console.log(data)
             if(data.status)
             {
-            window.location.href = data.longurl;
+                ref.update({clicks:firebase.firestore.FieldValue.increment(1)})
+                window.location.href = data.longurl;
             }
             else
             {
                 this.setState({error_destination:'2'})
             }
-      });
-    } else {
-        this.setState({error_destination:'1'})
-    }
-}) .catch(error => {
+        } else {
+            this.setState({error_destination:'1'})
+        }
+      })
+     .catch(error => {
     console.log(error)
     
 } )

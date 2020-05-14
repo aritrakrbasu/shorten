@@ -1,7 +1,7 @@
 //Importing all important files 
 
 import React , {Component} from 'react';
-import { BrowserRouter, Route, Switch,Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 import fire from './firebase_config';
 import Login from './login';
