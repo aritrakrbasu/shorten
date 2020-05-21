@@ -91,7 +91,7 @@ class  Home extends Component {
                 clicks:0,
                 author:localStorage.getItem("user")
                 });
-                this.setState({newurl:domain+"/v/"+shorturl})
+                this.setState({newurl:"https://"+window.location.hostname+"/v/"+shorturl})
             }
         }).catch((error) =>{
             console.log("Error getting document:", error);
@@ -198,7 +198,7 @@ render()
                         <label className ="theme-text"> New Short Url </label>
                         <div className ="input-group mb-2">
                             <div className ="input-group-prepend d-none d-lg-block d-md-block">
-                            <div className ="input-group-text ">{domain + "/?v="}</div>
+                            <div className ="input-group-text ">{"https://"+window.location.hostname + "/v/"}</div>
                             </div>
                             <input type="text" 
                                     name="shorturl" 
@@ -289,9 +289,9 @@ render()
                                                 
                                                 <ul>
                                                     <li className="long_url"><a href={urls.data.longurl}  target="_blank" rel="noopener noreferrer">{urls.data.longurl}</a></li>
-                                                    <li className="short_url"><a href= {domain +"/v/"+ urls.data.shorturl}  target="_blank" rel="noopener noreferrer" >{domain +"/v/"+ urls.data.shorturl}</a></li>
+                                                    <li className="short_url"><a href= {"https://"+window.location.hostname +"/v/"+ urls.data.shorturl}  target="_blank" rel="noopener noreferrer" >{"https://"+window.location.hostname +"/v/"+ urls.data.shorturl}</a></li>
                                                     <small>{urls.data.status? (<span>Active</span>) : <span>Not Active</span>}</small><br/>
-                                                    <button className="btn small-btn mr-1" onClick={()=>{this.copyToClipboard(domain +"/v/"+ urls.data.shorturl)}}>Copy url</button>
+                                                    <button className="btn small-btn mr-1" onClick={()=>{this.copyToClipboard("https://"+window.location.hostname +"/v/"+ urls.data.shorturl)}}>Copy url</button>
                                                     <button className="btn small-btn mr-1" id={urls.id} onClick={() => this.setState({editModalStatus:true,editdoc:urls.data})}>Edit Url</button>
 
                                                 </ul>

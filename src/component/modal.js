@@ -158,7 +158,7 @@ updatehandleChange(e){
                         <label className ="theme-text"> Short Url </label>
                         <div className ="input-group mb-2">
                             <div className="input-group-prepend d-none d-lg-block d-md-block">
-                            <div className ="input-group-text">{domain + "/v/="}</div>
+                            <div className ="input-group-text">{"https://"+window.location.hostname +"/v/="}</div>
                             </div>
                                    
                                     <input 
