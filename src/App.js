@@ -1,7 +1,7 @@
 //Importing all important files 
 
 import React , {Component} from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import fire from './firebase_config';
 import Login from './login';
@@ -9,6 +9,8 @@ import Register from './register';
 import Home from './home';
 import Destination from './destination';
 import Public from './public';
+import {PrivateRoute} from './privateroute';
+import { createBrowserHistory  } from 'history'
 
 class App extends Component {
 
@@ -32,8 +34,6 @@ class App extends Component {
         localStorage.setItem('user',user.uid);
         this.setState({user});
         this.setState({islogged:true});
-        console.log(this.state.user.uid)
-        
       }else
       {
         
@@ -47,30 +47,16 @@ class App extends Component {
   render(){
     return(
       <div className="App">
-         { this.state.user? 
-		( 
-		 <div>
-           <BrowserRouter>
-           <Switch>    
-          <Route  path="/v/:id" component ={Destination}></Route> 
-          <Route  path="/" component ={Home}></Route> 
-          </Switch>      
-         </BrowserRouter>
-         </div>
-         )
-         :
-         ( 
         <BrowserRouter>
         <Switch>      
           <Route exact path="/" component ={Public}></Route>         
           <Route exact path="/register" component ={Register}></Route>
           <Route exact path="/login" component ={Login}></Route>
           <Route  path="/v/:id" component ={Destination}></Route> 
-          <Route path="/:anything" component={Public} />
+          <PrivateRoute path="/dashboard" component={Home} />
           </Switch>
 
         </BrowserRouter>
-         )} 
       </div>
     );
   }

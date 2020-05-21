@@ -13,5 +13,5 @@ import 'firebase/firestore'
       };
     export const fire=firebase.initializeApp(config);
     export const db=firebase.firestore();
-    export const domain = 'http://localhost:3000'; //put your domain here 
+    export const domain = 'shorten2020.web.app'; //put your domain here 
     export default firebase; 

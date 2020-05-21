@@ -2,7 +2,6 @@ import React , {Component} from 'react';
 import fire from './firebase_config';
 import './App.css';
 
-
 class Login extends Component {
 
   constructor(props){
@@ -28,7 +27,8 @@ class Login extends Component {
         // ...
         // New sign-in will be persisted with session persistence.
          fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
-            console.log("yo")
+            window.location.href="./dashboard"
+           
         }).catch((error)=>
         {
           alert(error.message);

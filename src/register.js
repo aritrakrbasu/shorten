@@ -16,7 +16,7 @@ class Register extends Component {
       register(e){
         e.preventDefault();
         fire.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((u) => {
-    
+            window.location.href="./dashboard"
         }).catch((error)=>
         {
              alert(error.message);
