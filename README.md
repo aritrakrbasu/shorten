@@ -1,3 +1,5 @@
+![alt text](https://github.com/aritrakrbasu/shorten/blob/master/SHORTEN.png?raw=true)
+
 # Shorten
 
 shorten is a free custom url builder made with 
